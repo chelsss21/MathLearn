@@ -1,0 +1,145 @@
+[gd_scene load_steps=13 format=3 uid="uid://dp6dk2wpbyvxh"]
+
+[ext_resource type="Texture2D" uid="uid://cgfbeetp2faxp" path="res://1000055491.png" id="1_kmeng"]
+[ext_resource type="Texture2D" uid="uid://of7l3flfgnw0" path="res://1000055584.png" id="3_dlh8x"]
+[ext_resource type="Texture2D" uid="uid://c7x3ad3iydayp" path="res://1000055702-removebg-preview.png" id="3_ly1mb"]
+[ext_resource type="Texture2D" uid="uid://mo1d4l0de73r" path="res://ezgif-1-da7fe5c53f.png" id="4_44ev6"]
+[ext_resource type="Texture2D" uid="uid://duvvjs3h821jj" path="res://1000055585.png" id="4_yxlx5"]
+[ext_resource type="Script" path="res://animation_player.gd" id="5_l44sa"]
+[ext_resource type="Texture2D" uid="uid://chrim1llnqv6y" path="res://1000055709-removebg-preview.png" id="5_ulyy6"]
+
+[sub_resource type="GDScript" id="GDScript_1fugj"]
+script/source = "extends Control
+
+
+
+
+func _on_start_pressed() -> void:
+	get_tree().change_scene_to_file(\"res://options.tscn\")
+
+
+
+func _on_exit_pressed() -> void:
+	get_tree().quit()
+"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pyl6l"]
+texture = ExtResource("1_kmeng")
+
+[sub_resource type="Animation" id="Animation_kpvji"]
+length = 0.001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_sot8h"]
+resource_name = "logo"
+length = 0.700005
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333, 0.566667, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3y3ln"]
+_data = {
+"RESET": SubResource("Animation_kpvji"),
+"logo": SubResource("Animation_sot8h")
+}
+
+[node name="menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_1fugj")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_pyl6l")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(50, 50)
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = 108.0
+offset_right = 200.0
+offset_bottom = 643.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 33
+
+[node name="Start" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("3_dlh8x")
+texture_pressed = ExtResource("3_ly1mb")
+
+[node name="Exit" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("4_yxlx5")
+texture_pressed = ExtResource("5_ulyy6")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -77.0
+offset_right = 20.0
+offset_bottom = -37.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer2"]
+position = Vector2(4.00003, -309)
+scale = Vector2(2.55769, 2.55769)
+texture = ExtResource("4_44ev6")
+hframes = 20
+frame = 1
+region_enabled = true
+region_rect = Rect2(0, -16, 11000, 416)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="VBoxContainer2/Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_3y3ln")
+}
+speed_scale = 0.711
+script = ExtResource("5_l44sa")
+
+[connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]

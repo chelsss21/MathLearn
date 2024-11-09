@@ -1,0 +1,93 @@
+[gd_scene load_steps=14 format=3 uid="uid://biyglqhii0eaf"]
+
+[ext_resource type="Texture2D" uid="uid://cyfylxk0quxih" path="res://Untitled977 (1).png" id="1_hocg1"]
+[ext_resource type="Script" path="res://options.gd" id="1_u1lgt"]
+[ext_resource type="Texture2D" uid="uid://do4thmug6v05s" path="res://1000055590.png" id="2_8a5io"]
+[ext_resource type="Texture2D" uid="uid://bh4il06ma4dxj" path="res://1000055592.png" id="3_ld2k0"]
+[ext_resource type="Texture2D" uid="uid://cy46r0ewr1cfu" path="res://1000055703.png" id="4_4al0k"]
+[ext_resource type="Texture2D" uid="uid://d1acxfmfhgpiu" path="res://1000055594.png" id="4_nhojr"]
+[ext_resource type="Texture2D" uid="uid://dup6jxd0j00t7" path="res://1000055596.png" id="5_toqcx"]
+[ext_resource type="Texture2D" uid="uid://bilfll6i61xno" path="res://1000055598.png" id="6_deh6l"]
+[ext_resource type="Texture2D" uid="uid://bffmmewm7kujr" path="res://1000055714-removebg-preview.png" id="6_ggb7o"]
+[ext_resource type="Texture2D" uid="uid://cuqwlrxxvnv3d" path="res://1000055715-removebg-preview.png" id="8_eglly"]
+[ext_resource type="Texture2D" uid="uid://cykmyteqvjv2h" path="res://1000055717-removebg-preview.png" id="10_glexf"]
+[ext_resource type="Texture2D" uid="uid://vcm61ybeqxyk" path="res://1000055721-removebg-preview.png" id="12_8bxvd"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y8cox"]
+texture = ExtResource("1_hocg1")
+
+[node name="options" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_u1lgt")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_y8cox")
+
+[node name="Back" type="TextureButton" parent="Panel"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 33.0
+offset_right = 279.0
+offset_bottom = 183.0
+texture_normal = ExtResource("2_8a5io")
+texture_pressed = ExtResource("4_4al0k")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -214.0
+offset_right = 244.0
+offset_bottom = 298.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="add" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("3_ld2k0")
+texture_pressed = ExtResource("6_ggb7o")
+
+[node name="sub" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("4_nhojr")
+texture_pressed = ExtResource("8_eglly")
+
+[node name="multi" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("5_toqcx")
+texture_pressed = ExtResource("10_glexf")
+
+[node name="divi" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("6_deh6l")
+texture_pressed = ExtResource("12_8bxvd")
+
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="VBoxContainer/divi"]
+mesh_lod_threshold = 0.0
+sdf_oversize = 0
+title = "Are You Ready?"
+position = Vector2i(0, 36)
+size = Vector2i(509, 197)
+visible = true
+ok_button_text = "Yes"
+dialog_text = "You are tasked to answer 10 items of the selected mode of
+ mathematical operation under 5 minutes.
+"
+cancel_button_text = "No"
+
+[connection signal="pressed" from="Panel/Back" to="." method="_on_back_pressed"]
